@@ -9,6 +9,10 @@ rollup.config.js
 yarn.lock
 .history
 .DS_Store
+.build/
+dev/
+.temp/
+.git*
 
 # Logs
 logs

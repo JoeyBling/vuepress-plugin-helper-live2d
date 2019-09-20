@@ -3,7 +3,7 @@ module.exports = {
   /* 使用插件 */
   plugins: [
     [
-      'vuepress-plugin-helper-live2d', {
+      require('../../index'), {
         live2d: {
           // 是否启用(关闭请设置为false)(default: true)
           enable: true,
