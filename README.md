@@ -48,7 +48,7 @@ npm install vuepress-plugin-helper-live2d --save
 
 在配置文件中引入 `vuepress-plugin-helper-live2d`
 
-> 查看 [官方文档](https://v1.vuepress.vuejs.org/zh/plugin/using-a-plugin.html)`。
+> 查看 [官方文档](https://v1.vuepress.vuejs.org/zh/plugin/using-a-plugin.html)。
 
 ```javascript
 module.exports = {
