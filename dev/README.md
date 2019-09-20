@@ -1,4 +1,5 @@
 # vuepress-plugin-helper-live2d
+------------------
 
 ```
  _          _                      _ _           ____     _
@@ -19,11 +20,19 @@
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/JoeyBling/vuepress-plugin-helper-live2d.svg?label=commits "GitHub Last Commit")
 ![issues](https://img.shields.io/github/issues/JoeyBling/vuepress-plugin-helper-live2d "issues")
 [![Author](https://img.shields.io/badge/Author-JoeyBling-red.svg "Author")](https://zhousiwei.gitee.io "Author")
+[![VuePress Version](https://img.shields.io/badge/VuePress-%3E%3D%201.0.0-blue.svg)](http://hexo.io)
 [![vuepress-theme-yilia-plus](https://img.shields.io/badge/Theme-Yilia_Plus-red.svg "hexo-theme-yilia-plus")](https://github.com/JoeyBling/vuepress-theme-yilia-plus)
 [![博客搭建交流群](https://img.shields.io/badge/QQ群-422625065-red.svg "博客搭建交流群")](https://jq.qq.com/?_wv=1027&k=58Ypj9z "博客搭建交流群")
 
+------------------
+
+> **欢迎使用和Star支持，如使用过程中碰到问题，可以提出Issue，我会尽力完善**
+
 ## 介绍
 &#160;&#160;&#160;&#160;**VuePress集成Live2D看板娘 Live2D plugin for VuePress.**
+
+- 功能还很少，欢迎各位给我提意见和建议~
+- [vuepress-plugin-helper-live2d](https://github.com/JoeyBling/vuepress-plugin-helper-live2d) 是为 [VuePress](https://v1.vuepress.vuejs.org/zh/) 1.0.0+制作的插件。
 
 ## 线上预览
 
@@ -31,6 +40,10 @@
 
 ## 推荐一款VuePress主题
 > **一款简洁优雅的VuePress主题 ➡️ [https://github.com/JoeyBling/vuepress-theme-yilia-plus](https://github.com/JoeyBling/vuepress-theme-yilia-plus)**
+
+## 效果截图
+
+![截图](./examples/images/web_mini.png)
 
 ## 安装
 
@@ -42,7 +55,7 @@ npm install vuepress-plugin-helper-live2d --save
 
 ------------
 
-## 使用
+## 开始使用
 
 ### 引入该插件
 
@@ -90,6 +103,13 @@ module.exports = {
   ]
 }
 ```
+
+## 捐赠
+&#160;&#160;&#160;&#160;**如果感觉对您有帮助，请作者喝杯咖啡吧，请注明您的名字或者昵称，方便作者感谢o(*￣︶￣*)o**
+
+| 微信 | 支付宝 |
+| :---: | :---: |
+| ![](./examples/images/weixin.png) | ![](./examples/images/alipay.jpeg) |
 
 ## 关于我
 - [个人博客](https://zhousiwei.gitee.io/)
