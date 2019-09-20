@@ -1,5 +1,4 @@
 # vuepress-plugin-helper-live2d
-------------------
 
 ```
  _          _                      _ _           ____     _
@@ -20,8 +19,8 @@
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/JoeyBling/vuepress-plugin-helper-live2d.svg?label=commits "GitHub Last Commit")
 ![issues](https://img.shields.io/github/issues/JoeyBling/vuepress-plugin-helper-live2d "issues")
 [![Author](https://img.shields.io/badge/Author-JoeyBling-red.svg "Author")](https://zhousiwei.gitee.io "Author")
-[![VuePress Version](https://img.shields.io/badge/VuePress-%3E%3D%201.0.0-blue.svg)](http://hexo.io)
-[![vuepress-theme-yilia-plus](https://img.shields.io/badge/Theme-Yilia_Plus-red.svg "hexo-theme-yilia-plus")](https://github.com/JoeyBling/vuepress-theme-yilia-plus)
+[![VuePress Version](https://img.shields.io/badge/VuePress-%3E%3D%201.0.0-blue.svg)](https://v1.vuepress.vuejs.org/zh/)
+[![vuepress-theme-yilia-plus](https://img.shields.io/badge/Theme-Yilia_Plus-red.svg "vuepress-theme-yilia-plus")](https://github.com/JoeyBling/vuepress-theme-yilia-plus)
 [![博客搭建交流群](https://img.shields.io/badge/QQ群-422625065-red.svg "博客搭建交流群")](https://jq.qq.com/?_wv=1027&k=58Ypj9z "博客搭建交流群")
 
 ------------------
