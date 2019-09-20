@@ -31,7 +31,7 @@
 &#160;&#160;&#160;&#160;**VuePress集成Live2D看板娘 Live2D plugin for VuePress.**
 
 - 功能还很少，欢迎各位给我提意见和建议~
-- [vuepress-plugin-helper-live2d](https://github.com/JoeyBling/vuepress-plugin-helper-live2d) 是为 [VuePress](https://v1.vuepress.vuejs.org/zh/) 1.0.0+制作的插件。
+- [vuepress-plugin-helper-live2d](https://github.com/JoeyBling/vuepress-plugin-helper-live2d) 是为 [VuePress](https://v1.vuepress.vuejs.org/zh/) `1.0.0+`制作的插件。
 
 ## 线上预览
 
