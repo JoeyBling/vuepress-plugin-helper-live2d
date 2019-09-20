@@ -1,0 +1,13 @@
+// Live2d Minimum display width on mobile
+// When you set The `mobile.show` property
+// 可以通过`palette.styl`重写覆盖(https://v1.vuepress.vuejs.org/zh/config/#palette-styl)
+$Live2DMobile ?= 500px;
+$live2dContainer = 'live2d-widget-container';
+
+@media screen and (max-width: $Live2DMobile) {
+  .{$live2dContainer} {
+    /* 不能使用隐藏，不然手机端会出现无故卡死( TODO 暂时实现为判断浏览器Agent)
+    FIXME 浏览器调式不出来问题，后期有时间可以装个模拟器调试下 */
+    /* display: none; */
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "vuepress-plugin-helper-live2d",
+  "version": "1.0.0",
+  "description": "VuePress集成Live2D看板娘 Live2D plugin for VuePress.",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoeyBling/vuepress-plugin-helper-live2d.git"
+  },
+  "keywords": [
+    "vue",
+    "vuepress",
+    "vuepress-plugin",
+    "live2d",
+    "yilia-plus"
+  ],
+  "author": {
+    "name": "JoeyBling",
+    "email": "2434387555@qq.com",
+    "url": "https://zhousiwei.gitee.io"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JoeyBling/vuepress-plugin-helper-live2d/issues"
+  },
+  "homepage": "https://github.com/JoeyBling/vuepress-plugin-helper-live2d",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "lodash": "^4.17.15"
+  }
+}
