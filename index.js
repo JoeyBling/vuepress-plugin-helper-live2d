@@ -1,9 +1,11 @@
 // VuePress内置函数
-const {
+/* const {
   logger,
   fs,
   path
-} = require('@vuepress/shared-utils')
+} = require('@vuepress/shared-utils') */
+const path = require("path");
+const fs = require("fs");
 
 /* const url = require('url'); */
 
@@ -13,6 +15,8 @@ const _ = require('lodash');
 const defaultPluginConfig = require('./default_plugin_config');
 // 遍历目录文件
 const listFiles = require('./listFiles');
+// 文件操作封装工具类
+const fileUtil = require('./fileUtil');
 // 自定义控制台打印函数
 const helper_live2d_log = require('./helper_live2d_log');
 
@@ -23,7 +27,7 @@ module.exports = (options = {}, context) => ({
 
   /* 在应用初始化之后，并在某些特定的函数式 API 执行之前执行 */
   async ready() {
-    // Object.assign函数为浅拷贝|lodash深拷贝
+    // Object.assign函数为浅拷贝 | lodash为深拷贝
     options = _.defaultsDeep({}, options, defaultPluginConfig);
     const {
       siteConfig = {}, // 站点配置
@@ -35,8 +39,18 @@ module.exports = (options = {}, context) => ({
       siteConfig.themeConfig.yilia_plus.live2d : {})
     // 合并默认配置和插件配置
     options.live2d = _.defaultsDeep({}, live2dConfig, defaultPluginConfig.live2d);
+
+    // 进行删除文件夹
+    // TODO 查找需要删除的文件夹名称之后才进行删除，不建议全删除整个文件夹，建议还要判断不要重复执行删除，
+    // 比如 当前model 正在使用的则跳过删除
+    const delDirPath = path.join((sourceDir || options.dest), options.outDir, options.outDirName);
+    helper_live2d_log(`清理文件夹资源--- ${delDirPath}`)
+    fileUtil.deleteFolder(delDirPath, false);
     if (options.live2d && options.live2d.enable) {
-      helper_live2d_log("Generating live2d...");
+      if (options.log) {
+        helper_live2d_log("Generating live2d...");
+      }
+      // `__dirname` 指向当前被执行js文件的所在目录绝对路径
       const modelFiles = listFiles(path.resolve(__dirname, path.join('./public/live2d',
         options.live2d.model, options.live2d.pluginModelPath)));
       if (!!modelFiles) {
@@ -51,7 +65,9 @@ module.exports = (options = {}, context) => ({
           const distPath = path.join((sourceDir || options.dest), options.outDir, options.outDirName, tempOutFilePath);
 
           if (!fs.existsSync(distPath)) {
+            // if (options.log) {
             helper_live2d_log("开始生成文件：" + tempOutFilePath);
+            // }
             // 递归创建目录(path.dirname函数返回路径中代表文件夹的部分)
             createListDirSync(path.dirname(distPath));
             // helper_live2d_log(distPath)
@@ -68,7 +84,8 @@ module.exports = (options = {}, context) => ({
             }).pipe(writeStream);
             writeStream.on('error', (error) => {
               helper_live2d_log('writeStream error' + error.message);
-            })
+            });
+
           } else {
             // 文件已存在，暂时不操作
             // helper_live2d_log('文件已存在，暂时不操作');
@@ -99,7 +116,9 @@ ${content}\n\n`.trim())
   },
 
   define() {
-    helper_live2d_log("加载插件配置：" + (JSON.stringify ? JSON.stringify(options.live2d) : options.live2d));
+    if (options.log) {
+      helper_live2d_log("加载插件配置：" + (JSON.stringify ? JSON.stringify(options.live2d) : options.live2d));
+    }
     return {
       // LIVE2D_CONFIG: JSON.stringify(options.live2d)
       OPTIONS: JSON.stringify(options)
@@ -128,7 +147,13 @@ ${content}\n\n`.trim())
 
   /* 在生产环境的构建结束后被调用，生成的页面的路径数组将作为该函数的第一个参数 */
   async generated() {
-
+    const {
+      pages,
+      locales,
+      base
+    } = context.getSiteData ?
+      context.getSiteData() :
+      context;
   }
 });
 
@@ -137,12 +162,13 @@ ${content}\n\n`.trim())
  * @param {文件夹路径} dir 
  */
 const createListDirSync = function (dir) {
+  // 以同步的方法检测目录是否存在
   if (fs.existsSync(dir)) {
-    return
+    return;
   }
 
   try {
-    fs.mkdirSync(dir)
+    fs.mkdirSync(dir, 0777);
     helper_live2d_log("递归创建文件夹：" + dir);
   } catch (err) {
     if (err.code == 'ENOENT') {

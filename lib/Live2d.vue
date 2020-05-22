@@ -68,7 +68,6 @@ export default {
       canvasStyle.height = this.config.display.height + "px";
       // canvasStyle["z-index"] = 99999;
       // this.live2d_log(canvasStyle);
-      // this.live2d_log();
       return canvasStyle;
     },
     // 统一输出日志
@@ -89,7 +88,7 @@ export default {
   data() {
     return {
       // 渲染的DOM元素id
-      elementName: "live2dcanvas",
+      elementName: "live2d_canvas",
       // 特定的模型json文件名称
       modelPathJson: {
         epsilon2_1: "Epsilon2.1",
@@ -102,11 +101,7 @@ export default {
   },
   mounted() {
     this.live2d_log(
-      this.$helperLive2dAppDescription +
-        " ➡️ " +
-        this.$helperLive2dAppName +
-        " ➡️ " +
-        this.$helperLive2dAppUrl
+      this.$appDescription + " ➡️ " + this.$appName + " ➡️ " + this.$appUrl
     );
     /* live2d_widget.L2Dwidget.init({
       model: {
@@ -138,6 +133,8 @@ export default {
         loadlive2d &&
         // this.$withBase只对开头为/的路径生效
         // (packages\@vuepress\core\lib\client\app.js)
+        // this.$site.base
+        // console.log(`this.$site.base${this.$site.base}`);
         loadlive2d(
           this.elementName,
           this.$withBase(

@@ -93,3 +93,9 @@ typings/
 
 # Test directory
 test
+
+# Custom rules
+bak_model
+# 暂时去掉互动音效
+# https://github.com/JoeyBling/vuepress-plugin-helper-live2d/issues/1
+snd

@@ -1,6 +1,7 @@
 /**
  * @description List files of provided path
  */
+
 const fs = require('fs');
 const path = require('path');
 
@@ -9,9 +10,9 @@ const path = require('path');
  * @param  {String} dirPath The path to the dir
  * @return {Array}          An array that contains all the file paths
  */
-
 module.exports = function listFiles(dirPath) {
   try {
+    // 指定目录下所有文件名称
     const lsDir = fs.readdirSync(dirPath);
     const filesArr = [];
     for (const fileName of lsDir) {
