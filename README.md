@@ -77,6 +77,8 @@ module.exports = {
   plugins: [
     [
       'vuepress-plugin-helper-live2d', {
+        // 是否开启控制台日志打印
+        log: true,
         live2d: {
           // 是否启用(关闭请设置为false)(default: true)
           enable: true,
