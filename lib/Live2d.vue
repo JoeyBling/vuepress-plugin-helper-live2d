@@ -101,7 +101,7 @@ export default {
   },
   mounted() {
     this.live2d_log(
-      this.$appDescription + " ➡️ " + this.$appName + " ➡️ " + this.$appUrl
+      this.$helperLive2dAppDescription + " ➡️ " + this.$helperLive2dAppName + " ➡️ " + this.$helperLive2dAppUrl
     );
     /* live2d_widget.L2Dwidget.init({
       model: {

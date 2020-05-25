@@ -1,7 +1,6 @@
 /**
  * @description List files of provided path
  */
-
 const fs = require('fs');
 const path = require('path');
 

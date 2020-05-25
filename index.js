@@ -13,8 +13,6 @@ const fs = require("fs");
 const _ = require('lodash');
 // 默认插件配置
 const defaultPluginConfig = require('./default_plugin_config');
-// 遍历目录文件
-const listFiles = require('./listFiles');
 // 文件操作封装工具类
 const fileUtil = require('./fileUtil');
 // 自定义控制台打印函数
@@ -40,18 +38,32 @@ module.exports = (options = {}, context) => ({
     // 合并默认配置和插件配置
     options.live2d = _.defaultsDeep({}, live2dConfig, defaultPluginConfig.live2d);
 
-    // 进行删除文件夹
-    // TODO 查找需要删除的文件夹名称之后才进行删除，不建议全删除整个文件夹，建议还要判断不要重复执行删除，
-    // 比如 当前model 正在使用的则跳过删除
+    // 进行删除文件夹(查找需要删除的文件夹名称之后才进行删除，不建议全删除整个文件夹)
     const delDirPath = path.join((sourceDir || options.dest), options.outDir, options.outDirName);
-    helper_live2d_log(`清理文件夹资源--- ${delDirPath}`)
-    fileUtil.deleteFolder(delDirPath, false);
-    if (options.live2d && options.live2d.enable) {
-      if (options.log) {
-        helper_live2d_log("Generating live2d...");
+    const delFolders = fileUtil.listFolder(path.resolve(__dirname, path.join('./public/live2d')));
+    if (!!delFolders) {
+      for (let folder of delFolders) {
+        // 模型文件夹名称
+        let modelDirName = path.basename(folder);
+        if (options.live2d && options.live2d.enable && modelDirName == options.live2d.model) {
+          // 正在使用的则跳过删除
+          options.log && helper_live2d_log(`跳过删除--- ${options.live2d.model}`);
+          continue;
+        }
+        // 待删除的模型文件夹
+        let modelDirPath = path.join(delDirPath, modelDirName);
+        if (fs.existsSync(modelDirPath)) {
+          fileUtil.deleteFolder(modelDirPath);
+          options.log && helper_live2d_log(`清理文件夹资源--- ${modelDirPath}`);
+        }
       }
+    }
+
+    if (options.live2d && options.live2d.enable) {
+      options.log && helper_live2d_log("Generating live2d...");
       // `__dirname` 指向当前被执行js文件的所在目录绝对路径
-      const modelFiles = listFiles(path.resolve(__dirname, path.join('./public/live2d',
+      // path.join(__dirname,'./public/live2d')
+      const modelFiles = fileUtil.listFiles(path.resolve(__dirname, path.join('./public/live2d',
         options.live2d.model, options.live2d.pluginModelPath)));
       if (!!modelFiles) {
         // modelFiles.map((file) => 
@@ -65,12 +77,9 @@ module.exports = (options = {}, context) => ({
           const distPath = path.join((sourceDir || options.dest), options.outDir, options.outDirName, tempOutFilePath);
 
           if (!fs.existsSync(distPath)) {
-            // if (options.log) {
             helper_live2d_log("开始生成文件：" + tempOutFilePath);
-            // }
             // 递归创建目录(path.dirname函数返回路径中代表文件夹的部分)
             createListDirSync(path.dirname(distPath));
-            // helper_live2d_log(distPath)
             // fs.writeFile读取二进制文件有误
             // await fs.writeFile(
             //   distPath,

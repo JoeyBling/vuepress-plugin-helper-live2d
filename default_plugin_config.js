@@ -5,8 +5,8 @@ const config = require('./package.json');
 
 /* 全局默认配置(插件定义的常量) */
 module.exports = {
-  // 全局开启是否打印控制台日志
-  log: true,
+  // 是否开启控制台日志打印(default: false)
+  log: false,
   // 插件名称
   pluginName: config.name,
   // 输出目录(不要以/结尾)
