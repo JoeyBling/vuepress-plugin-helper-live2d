@@ -14,7 +14,12 @@ const _ = require('lodash');
 // 默认插件配置
 const defaultPluginConfig = require('./default_plugin_config');
 // 文件操作封装工具类
-const fileUtil = require('./fileUtil');
+// const fileUtil = require('./fileUtil');
+const {
+  deleteFolder,
+  listFiles,
+  listFolder
+} = require('./fileUtil');
 // 自定义控制台打印函数
 const helper_live2d_log = require('./helper_live2d_log');
 
@@ -40,7 +45,7 @@ module.exports = (options = {}, context) => ({
 
     // 进行删除文件夹(查找需要删除的文件夹名称之后才进行删除，不建议全删除整个文件夹)
     const delDirPath = path.join((sourceDir || options.dest), options.outDir, options.outDirName);
-    const delFolders = fileUtil.listFolder(path.resolve(__dirname, path.join('./public/live2d')));
+    const delFolders = listFolder(path.resolve(__dirname, path.join('./public/live2d')));
     if (!!delFolders) {
       for (let folder of delFolders) {
         // 模型文件夹名称
@@ -53,7 +58,7 @@ module.exports = (options = {}, context) => ({
         // 待删除的模型文件夹
         let modelDirPath = path.join(delDirPath, modelDirName);
         if (fs.existsSync(modelDirPath)) {
-          fileUtil.deleteFolder(modelDirPath);
+          deleteFolder(modelDirPath);
           options.log && helper_live2d_log(`清理文件夹资源--- ${modelDirPath}`);
         }
       }
@@ -63,7 +68,7 @@ module.exports = (options = {}, context) => ({
       options.log && helper_live2d_log("Generating live2d...");
       // `__dirname` 指向当前被执行js文件的所在目录绝对路径
       // path.join(__dirname,'./public/live2d')
-      const modelFiles = fileUtil.listFiles(path.resolve(__dirname, path.join('./public/live2d',
+      const modelFiles = listFiles(path.resolve(__dirname, path.join('./public/live2d',
         options.live2d.model, options.live2d.pluginModelPath)));
       if (!!modelFiles) {
         // modelFiles.map((file) => 

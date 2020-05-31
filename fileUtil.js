@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 /**
- * 删除文件夹及文件夹下所有文件
+ * @description 删除文件夹及文件夹下所有文件
  * Delete folder and all files under folder
  * @param  {String} dirPath The path to the dir
  * @param  {Boolean} delCurrDir 是否删除最外层文件夹，如果为false，则保留空文件夹，默认为true
